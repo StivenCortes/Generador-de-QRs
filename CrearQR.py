@@ -1,80 +1,121 @@
 """
-Creador de QRs
+Generador de códigos QR
 
-En este archivo vamos a crear un código QR a partir de un texto o una URL. 
-Utilizamos la librería qrcode para generar códigos QR de manera sencilla.
-Esto nos puede ser muy útil cuando necesitamos generar QRs para compartir información.
+Este programa toma un texto o una URL y la convierte en un código QR.
+Para hacerlo, usamos la librería qrcode, que facilita mucho la creación
+de imágenes QR sin tener que escribir un montón de lógica complicada.
+
+Es útil cuando queremos compartir enlaces, datos o información rápida
+de forma visual y práctica.
 
 Librerías utilizadas:
-- qrcode: Genera códigos QR
+- qrcode: genera el código QR final
 """
 
-# ============================================================================
-# SECCIÓN 1: IMPORTACIÓN DE LIBRERÍAS
-# ============================================================================
-# Importamos 'qrcode' para generar los códigos QR
+# Importamos qrcode para generar los códigos y Path para trabajar con rutas
+# de archivos de una forma clara y compatible con distintos sistemas.
 import qrcode
+from pathlib import Path
 
 
-# ============================================================================
-# SECCIÓN 2: MENSAJES DE BIENVENIDA
-# ============================================================================
-# Mostramos mensajes en la consola para informar al usuario qué hace el programa
-print("\nBienvenido al generador de códigos QR") 
-print("Este programa le permitirá generar un código QR a partir de un texto o una URL")
-print("Ejemplo de nombre de archivo: mi_codigo_qr.png\n")
+def CreadorQR():
+    # Primero mostramos una bienvenida para que el usuario sepa qué puede hacer
+    # el programa y qué tipo de nombre puede usar para guardar el archivo.
+    print(" ")
+    print("=" * 80)
+    print("Bienvenido al generador de códigos QR")
+    print("Este programa te permitirá crear un código QR a partir de una URL y un nombre del archivo junto con su extensión")
+    print("Ejemplo de nombre de archivo: mi_codigo_qr.png\n")
 
+    # Repetimos la pregunta hasta recibir un número entero mayor que cero.
+    while True:
+        try:
+            # Esta cantidad controla cuántas veces se repetirá la creación del QR.
+            cantidad = int(input("¿Cuántos códigos QR quieres hacer?: "))
+            if cantidad <= 0:
+                raise ValueError
+            break
+        except ValueError:
+            print("Ingrese un número entero mayor que 0.\n")
 
-# ============================================================================
-# SECCIÓN 3: ENTRADA DE DATOS DEL USUARIO
-# ============================================================================
-# Solicitamos al usuario que ingrese el texto o URL que desea convertir en QR
-# Esta información se almacena en la variable 'dato'
-dato = input("Ingrese la URL o el texto que desea convertir en código QR: ")
+    contador = 0
+    ruta_guardada = None
+    extensiones_permitidas = [".png", ".jpg", ".jpeg"]
 
-# Solicitamos el nombre que tendrá el archivo de imagen del QR
-# El usuario debe incluir la extensión (.png, .jpg, etc.)
-nombre_qr = input("Ingrese el nombre del archivo QR (con extensión .png, .jpg, etc.): ")
+    # Cada vuelta del ciclo crea un código QR. El contador avanza solo cuando el archivo se guarda correctamente.
+    while contador < cantidad:
+        try:
+            # El usuario puede introducir una URL, un mensaje o cualquier texto. strip() elimina espacios innecesarios al principio y al final.
+            url = input("Ingrese la URL o el texto que desea convertir en código QR: ").strip()
 
+            # Pedimos el nombre final del archivo, incluida su extensión.
+            nombre_qr = input("Ingrese el nombre del archivo QR (con extensión .png, .jpg, o .jpeg): ").strip()
 
-# ============================================================================
-# SECCIÓN 4: DEFINICIÓN DE LA RUTA
-# ============================================================================
-# Definimos la ruta donde se guardará el código QR
-# Usamos \\ porque en Windows \ es un carácter especial (carácter de escape)
-# Ejemplo de ruta: Proyectos\CrearQRs\QRs\
-ruta = "Proyectos\\CrearQRs\\QRs\\"
+            # Antes de crear el código comprobamos que los datos sean útiles.
+            # Si algo está vacío o tiene un formato no permitido, volvemos a intentarlo.
+            if not url.strip():
+                raise ValueError("La URL no puede estar vacía.")
+            elif not nombre_qr.strip():
+                raise ValueError("El nombre del archivo junto con su tipo, no pueden estar vacíos.")
+            elif Path(nombre_qr).suffix.lower() not in extensiones_permitidas:
+                raise ValueError("Usa una extensión .png, .jpg, .jpeg")
 
+            # La ruta solo se solicita en el primer código. Después podemos reutilizarla para no obligar al usuario a escribirla varias veces.
+            if ruta_guardada is None:
+                pedir_ruta = input("Ingrese la ruta donde se guardará el QR: ").strip()
+                if not pedir_ruta:
+                    raise ValueError("La ruta no puede estar vacía.")
 
-# ============================================================================
-# SECCIÓN 5: CREACIÓN DEL CÓDIGO QR
-# ============================================================================
-# Usamos qrcode.make() para crear directamente un código QR
-# Este es el método más simple: recibe los datos y devuelve una imagen
-qr = qrcode.make(dato)
+                # Convertimos el texto recibido en un objeto Path para trabajar con él.
+                ruta = Path(pedir_ruta)
+                # No podemos guardar el archivo si la carpeta no existe.
+                if not ruta.is_dir():
+                    raise ValueError("La ruta indicada no existe.")
+                
+                pregunta_ruta = input("¿Quieres guardar esta ruta para usarla después? s/n: ").strip().lower()
 
+                # Insistimos hasta recibir una respuesta clara: sí o no.
+                while pregunta_ruta not in {"s", "n"}:
+                    print("Carácter incorrecto.")
+                    pregunta_ruta = input("¿Quieres guardar esta ruta para usarla después? s/n: ").strip().lower()
 
-# ============================================================================
-# SECCIÓN 6: GUARDADO DEL CÓDIGO QR
-# ============================================================================
-# Construimos la ruta completa del archivo (carpeta + nombre)
-ruta_completa = ruta + nombre_qr
+                if pregunta_ruta == "s":
+                    ruta_guardada = ruta
+                    print("✓ Ruta guardada con éxito.")
+                else:
+                    print("X Ruta no guardada.")
+            else:
+                # En los siguientes códigos usamos la ruta que el usuario ya eligió.
+                ruta = ruta_guardada
 
-# Guardamos la imagen del QR en el archivo especificado
-# .save() escribe la imagen en disco
-qr.save(ruta_completa)
+            # Unimos la carpeta y el nombre para obtener la ubicación completa del archivo.
+            ruta_completa = ruta / nombre_qr
 
-# Mostramos un mensaje confirmando que se guardó correctamente
-print(f"\n✓ El código QR se ha generado correctamente")
-print(f"Ha sido guardado en: {ruta_completa}")
+            # qrcode.make() transforma el texto introducido en una imagen QR.
+            qr = qrcode.make(url)
 
+            try:
+            # Intentamos guardar la imagen en la ubicación elegida.
+                qr.save(ruta_completa)
+            except(OSError, ValueError) as error:
+                print(f"No se pudo guardar el código QR: {error}")
+                continue
 
-# ============================================================================
-# SECCIÓN 7: MOSTRAR EL QR EN PANTALLA
-# ============================================================================
-# Mostramos el código QR en una ventana emergente, así verificamos si todo esta perfecto
-# .show() abre la imagen con el visor de imágenes predeterminado del sistema
-qr.show()
+            # Mostramos la imagen para que el usuario pueda comprobar el resultado.
+            qr.show()
 
-# Mensajes finales
-print("✓ Programa terminado correctamente")
+            # Confirmamos dónde quedó guardado el archivo.
+            print(f"\n✓ El código QR se ha generado correctamente")
+            print(f"Ha sido guardado en: {ruta_completa}\n")
+
+            # Solo contamos este QR porque ya fue guardado correctamente.
+            contador += 1
+
+            # Este mensaje aparece cuando se han creado todos los códigos solicitados.
+            print("✓ Programa terminado correctamente")
+        # Si los datos de este QR no son válidos, mostramos el error y repetimos
+        # la vuelta sin perder los códigos que ya se hayan creado.
+        except ValueError:
+            # Los códigos ANSI colorean el aviso de error en la terminal.
+            print("\n!" + "-" * 30 + "\033[31m Ocurrio un error. Intentalo de nuevo \033[0m" + "-" * 30 + "!")
+            continue
