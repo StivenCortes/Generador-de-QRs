@@ -32,8 +32,7 @@ La carpeta donde deseas guardarlo.
 Licencia:
 Este proyecto se distribuye bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
 
-<br>
-Créditos
+Créditos:
 Desarrollado y Programado por: Cristian Stiven Cortes Landazuri
 
 Cargo: Estudiante auxiliar Aula STEAM / UrambaLab
