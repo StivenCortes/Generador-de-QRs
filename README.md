@@ -10,7 +10,8 @@ Para ejecutar este programa, necesitas tener Python instalado y las siguientes l
 pip install qrcode pillow
 ```
 
-Guía de Uso (Sin conocimientos de programación)
+## Guía de Uso (Sin conocimientos de programación) 
+
 Descargar el proyecto: Haz clic en el botón verde < Code > en la parte superior derecha y selecciona "Download ZIP". Descomprime la carpeta en tu computadora.
 
 Abrir el programa: Abre únicamente el archivo llamado ejecutar.py en tu editor de código (como VS Code).
