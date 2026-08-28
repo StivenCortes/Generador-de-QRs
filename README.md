@@ -28,7 +28,8 @@ El nombre del archivo (ej. codigo.png).
 
 La carpeta donde deseas guardarlo.
 
-Licencia
+<br>
+Licencia:
 Este proyecto se distribuye bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
 
 <br>
