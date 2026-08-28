@@ -20,7 +20,7 @@ from pathlib import Path
 
 def creador_qr():
     # Esta funcion contiene todo el flujo interactivo del programa.
-    # Se ejecuta desde prebas.py, que importa este archivo y la llama.
+    # Se ejecuta desde ejecutar.py, que importa este archivo y la llama.
 
     # Primero mostramos una bienvenida para que el usuario sepa qué puede hacer
     # el programa y qué tipo de nombre puede usar para guardar el archivo.
