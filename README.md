@@ -1,4 +1,3 @@
-# Generador-de-QRs
 # Generador de Códigos QR - UrambaLab
 
 Herramienta en Python diseñada para generar rápida y masivamente códigos QR a partir de enlaces web (URLs) o texto plano. 
