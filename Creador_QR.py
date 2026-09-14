@@ -17,8 +17,6 @@ Librerías utilizadas:
 from pathlib import Path
 import qrcode
 
-
-
 def crear_qr():
     # Esta funcion contiene todo el flujo interactivo del programa.
     # Se ejecuta desde ejecutar.py, que importa este archivo y la llama.
