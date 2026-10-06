@@ -100,8 +100,8 @@ CreadorQRs/
 
 ## Créditos
 
-Proyecto desarrollado por Cristian Stiven Cortes Landazuri.
+Proyecto desarrollado por Cristian Stiven Cortes Landazuri. Estudiante de ingeniería de Sistemas y Computación de la Universidad Nacional de Colombia.
 
 ## Licencia
 
-Este proyecto se distribuye bajo la licencia MIT, salvo que se indique lo contrario en el repositorio.
+Este proyecto se distribuye bajo la licencia MIT.
