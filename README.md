@@ -29,12 +29,12 @@ El programa se ejecuta desde la terminal y ejecuta un flujo interactivo en conso
 
 Además, incluye validaciones para evitar errores como:
 
-- valores vacíos,
-- números menores o iguales a cero,
-- extensiones no soportadas,
-- rutas inexistentes,
-- nombres de archivo sin extensión,
-- sobrescrituras accidentales.
+- Valores vacíos.
+- Números menores o iguales a cero.
+- Extensiones no soportadas.
+- Rutas inexistentes.
+- Nombres de archivo sin extensión.
+- Sobrescrituras accidentales.
 
 ## Dependencias
 
