@@ -38,11 +38,53 @@ Además, incluye validaciones para evitar errores como:
 
 ## Dependencias
 
-Necesitas tener Python instalado en tu equipo. Luego instala las librerías necesarias con:
+Necesitas tener Python instalado en tu equipo. En este proyecto también se incluye un archivo llamado `requirements.txt` con todas las librerías necesarias. Puedes instalar todo de forma fácil con este comando:
 
 ```bash
-pip install qrcode pillow
+pip install -r requirements.txt
 ```
+
+Si quieres ver qué contiene ese archivo, aquí está:
+
+```txt
+colorama==0.4.6
+pillow==12.3.0
+qrcode==8.2
+```
+
+También puedes instalar cada librería manualmente si prefieres:
+
+```bash
+pip install qrcode pillow colorama
+```
+
+## Guía de uso (sin conocimientos de programación)
+
+Si no sabes mucho de programación, sigue estos pasos:
+
+1. Descarga el proyecto: haz clic en el botón verde "Code" y luego en "Download ZIP".
+2. Descomprime la carpeta en tu computadora.
+3. Abre la carpeta del proyecto y busca el archivo `crear_qr.py`.
+4. Abre ese archivo con VS Code o cualquier editor de Python.
+5. En la terminal del proyecto, ejecuta esta instrucción para instalar lo necesario:
+
+```bash
+pip install -r requirements.txt
+```
+
+6. Luego ejecuta el programa con:
+
+```bash
+python crear_qr.py
+```
+
+7. Sigue las instrucciones de la consola:
+   - cuántos QRs quieres crear,
+   - la URL o el texto,
+   - el nombre del archivo,
+   - la carpeta donde se guardará.
+
+8. Cuando termine, la imagen QR quedará guardada en la ruta que elegiste.
 
 ## Ejecución
 
