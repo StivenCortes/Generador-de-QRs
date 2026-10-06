@@ -79,10 +79,10 @@ python crear_qr.py
 ```
 
 7. Sigue las instrucciones de la consola:
-   - cuántos QRs quieres crear,
-   - la URL o el texto,
-   - el nombre del archivo,
-   - la carpeta donde se guardará.
+   - Cuántos QRs quieres crear.
+   - La URL o el texto.
+   - El nombre del archivo.
+   - La carpeta donde se guardará.
 
 8. Cuando termine, la imagen QR quedará guardada en la ruta que elegiste.
 
